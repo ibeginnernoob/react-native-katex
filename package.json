@@ -1,7 +1,7 @@
 {
-  "name": "react-native-latex",
+  "name": "@ibeginnernoob/react-native-katex",
   "version": "0.1.0",
-  "description": "Render Latex inside react native using katex inside webshell for dynamic height",
+  "description": "Render Math Equations inside react native using katex inside webshell for dynamic height",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
@@ -69,11 +69,15 @@
     "@release-it/conventional-changelog": "^10.0.1",
     "@types/jest": "^29.5.14",
     "@types/react": "^19.1.12",
+    "@typescript-eslint/eslint-plugin": "^8.43.0",
     "commitlint": "^19.8.1",
     "del-cli": "^6.0.0",
     "eslint": "^9.35.0",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-ft-flow": "^3.0.11",
+    "eslint-plugin-jest": "^29.0.1",
     "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react-native": "^5.0.0",
     "jest": "^29.7.0",
     "prettier": "^3.6.2",
     "react": "19.1.0",
@@ -83,8 +87,10 @@
     "typescript": "^5.9.2"
   },
   "peerDependencies": {
+    "@formidable-webview/webshell": "*",
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-webview": "*"
   },
   "workspaces": [
     "example"

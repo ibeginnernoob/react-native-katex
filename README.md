@@ -1,26 +1,40 @@
 # react-native-latex
 
-Render Latex inside react native using katex inside webshell for dynamic height
+Render Math Latex inside react native using katex inside webshell for dynamic height
 
 ## Installation
 
-
 ```sh
-npm install react-native-latex
+npm install @ibeginnernoob/react-native-katex
 ```
 
-
-## Usage
-
+## Simple Usage
 
 ```js
-import { multiply } from 'react-native-latex';
+import MathJax from '@ibeginnernoob/react-native-katex';
+import { Text, View } from 'react-native';
 
-// ...
-
-const result = await multiply(3, 7);
+export default function HomeScreen() {
+  return (
+    <View style={{ backgroundColor: 'white', flex: 1, marginTop: 100 }}>
+      <Text style={{ fontSize: 40 }}>This is me using text tag</Text>
+      <MathJax
+        content="This is me using latex inside webshells $$ \frac{1}{2} $$"
+        customStyles={{
+          fontSize: 50,
+          backgroundColor: 'red',
+          mathBgColor: 'blue',
+          textColor: 'green',
+        }}
+      />
+    </View>
+  );
+}
 ```
 
+## The Results looks something like:
+
+![How the simple usage looks like](assets/eg.jpeg)
 
 ## Contributing
 
