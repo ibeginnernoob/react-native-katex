@@ -1,4 +1,12 @@
-# React Native $\KaTeX$
+<div>
+
+<h1>React Native <a href="https://katex.org/">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://katex.org/img/katex-logo.svg">
+    <img alt="KaTeX" width=130 src="https://katex.org/img/katex-logo-black.svg">
+  </picture>
+</a></h1>
+</div>
 
 Render Math Latex in React Native using Katex with Webshell
 
@@ -29,7 +37,7 @@ Pass Content as a string with math equations wrapped with -
 
 ```
 	eg. pass containerStyles as ->
-	
+
 	"
 		background-color: red !important;
 		padding-left: 40px !important;
