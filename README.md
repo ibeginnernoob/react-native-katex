@@ -5,13 +5,13 @@ Render Math Latex inside react native using katex inside webshell for dynamic he
 ## Installation
 
 ```sh
-npm install @ibeginnernoob/react-native-katex
+npm install @adhei_gupta/react-native-katex
 ```
 
 ## Simple Usage
 
 ```js
-import MathJax from '@ibeginnernoob/react-native-katex';
+import MathJax from '@adhei_gupta/react-native-katex';
 import { Text, View } from 'react-native';
 
 export default function HomeScreen() {

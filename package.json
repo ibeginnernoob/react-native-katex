@@ -1,5 +1,5 @@
 {
-  "name": "@ibeginnernoob/react-native-katex",
+  "name": "@adheil_gupta/react-native-katex",
   "version": "0.1.0",
   "description": "Render Math Equations inside react native using katex inside webshell for dynamic height",
   "main": "./lib/module/index.js",
