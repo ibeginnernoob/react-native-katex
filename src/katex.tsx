@@ -3,6 +3,7 @@ import makeWebshell, {
   useAutoheight,
 } from '@formidable-webview/webshell';
 import { type ComponentProps } from 'react';
+import { StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 
 const Webshell = makeWebshell(WebView, new HandleHTMLDimensionsFeature());
@@ -16,32 +17,43 @@ function MinimalAutoheightWebView(webshellProps: WebshellProps) {
   return <Webshell {...autoheightWebshellProps} />;
 }
 
-type Styles = {
-  fontSize?: number;
-  textColor?: string;
-  backgroundColor?: string;
-  mathBgColor?: string;
-};
-
 const MathJax = ({
   content,
-  customStyles,
+  containerStyles,
+  textStyles,
+  mathContainerStyles,
 }: {
   content: string;
-  customStyles?: Styles;
+  containerStyles?: string;
+  textStyles?: string;
+  mathContainerStyles?: string;
 }) => {
-  const htmlSource = getSource(content, customStyles || {});
+  const htmlSource = getSource(
+    content,
+    containerStyles || '',
+    textStyles || '',
+    mathContainerStyles || ''
+  );
 
   return (
     <MinimalAutoheightWebView
       source={{ html: htmlSource }}
-      style={{ backgroundColor: 'transparent' }}
+      style={globalStyles.webview}
     />
   );
 };
 
-const getSource = (content: string, styles: Styles) => {
-  const setStyles = getStyles(styles);
+const globalStyles = StyleSheet.create({
+  webview: { backgroundColor: 'transparent' },
+});
+
+const getSource = (
+  content: string,
+  containerStyles: string,
+  textStyles: string,
+  mathContainerStyles: string
+) => {
+  const setStyles = getStyles(containerStyles, textStyles, mathContainerStyles);
 
   return `
 		<!DOCTYPE html>		
@@ -66,48 +78,41 @@ const getSource = (content: string, styles: Styles) => {
 				</script>
 			</head>		
 			<body>
-			<div id="container">
-				${content}
-			</div>
+				<div id="container">
+					${content}
+				</div>
 			</body>
 		</html>
 	`;
 };
 
-const getStyles = (styles: Styles) => {
+const getStyles = (
+  containerStyles: string,
+  textStyles: string,
+  mathContainerStyles: string
+) => {
   return `
 			<style>
-				body {				
-					width: 100% !important;
-					margin: 0 !important;
-					display: flex !important;
-					justify-content: center !important;
-					align-items: center !important;
-					background-color: transparent !important;
-				}
-	
 				#container {
-					text-align: center !important;
 					width: 100% !important;
-					flex-wrap: wrap !important;
-					margin: 0 !important;
-					background-color: ${styles.backgroundColor || 'transparent'} !important;
-					padding-top: 10px !important;
-					padding-bottom: 6px !important;
+					background-color: transparent !important;
+					${containerStyles}
 				}
 
-				*, p, span, div, * {
+				p, span, div {
 					background-color: transparent !important;
-					color: ${styles.textColor || 'black'} !important;
-					font-size: ${styles.fontSize || 20}px !important;
+					color: black !important;
+					font-size: 30px !important;
+					${textStyles}
 				}
 
 				.katex {
+					max-width: 100%;
 					white-space: normal !important;
-					overflow-wrap: break-word !important;				
-					max-width: 100%;				
-					font-size: ${styles.fontSize || 20}px !important;
-					background-color: ${styles.mathBgColor || 'transparent'} !important;
+					overflow-wrap: break-word !important;
+					flex-wrap: wrap !important;
+					background-color: transparent !important;
+					${mathContainerStyles}
 				}
 			</style>
 		  `;

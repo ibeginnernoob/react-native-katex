@@ -1,14 +1,43 @@
-# react-native-latex
+# React Native $\KaTeX$
 
-Render Math Latex inside react native using katex inside webshell for dynamic height
+Render Math Latex in React Native using Katex with Webshell
 
 ## Installation
 
 ```sh
-npm install @adhei_gupta/react-native-katex
+npm install @adheil_gupta/react-native-katex
 ```
 
-## Simple Usage
+## Usage
+
+Pass Content as a string with math equations wrapped with -
+
+- \$ ... \$ -> to display inline math
+- \$$ ... \$$ -> to display the equation on a new line
+
+## The Results looks something like:
+
+<img src="https://res.cloudinary.com/dzaj1xdgz/image/upload/v1757872049/eg_kcgxvr.jpg" width="400">
+
+## Styling
+
+<img src="https://res.cloudinary.com/dzaj1xdgz/image/upload/v1757872048/eg2_z7tbzm.png" width="400">
+
+- containerStyles - style the outer div
+- textStyles - text styling
+- mathContainerStyles - style the inner divs(green border that render the math equations)
+
+```
+	eg. pass containerStyles as ->
+	
+	"
+		background-color: red !important;
+		padding-left: 40px !important;
+		padding-right: 40px !important;
+	"
+```
+
+## Simple Example
 
 ```js
 import MathJax from '@adhei_gupta/react-native-katex';
@@ -16,25 +45,12 @@ import { Text, View } from 'react-native';
 
 export default function HomeScreen() {
   return (
-    <View style={{ backgroundColor: 'white', flex: 1, marginTop: 100 }}>
-      <Text style={{ fontSize: 40 }}>This is me using text tag</Text>
-      <MathJax
-        content="This is me using latex inside webshells $$ \frac{1}{2} $$"
-        customStyles={{
-          fontSize: 50,
-          backgroundColor: 'red',
-          mathBgColor: 'blue',
-          textColor: 'green',
-        }}
-      />
+    <View style={{ backgroundColor: 'white', flex: 1 }}>
+      <MathJax content="Inline Equaton - $ \sum_{i=1}^n i = frac{(n(n+1))}^{2} $ New Line Equation - $$ \sum_{i=1}^n i = frac{(n(n+1))}^{2} $$" />
     </View>
   );
 }
 ```
-
-## The Results looks something like:
-
-![How the simple usage looks like](assets/eg.jpeg)
 
 ## Contributing
 
